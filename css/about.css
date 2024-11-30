@@ -1,0 +1,10 @@
+.signature {
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width:500px) {
+    .signature {
+        height: 2.5em;
+    }
+}

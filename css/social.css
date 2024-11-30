@@ -1,0 +1,73 @@
+/* common for social */
+#social {
+    position: absolute;
+    right: -25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#social li {
+    list-style: none;
+}
+
+#social li a {
+    text-decoration: none;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 5px 0;
+    filter: drop-shadow(4px 4px 10px #fff);
+    box-shadow: 15px 25px 10px rgba(0, 0, 0, 0.5), inset 10px 10px 10px rgba(0, 0, 0, 0.5), 15px 20px 20px rgba(0, 0, 0, 0.5), inset -10px -10px 15px rgba(225, 225, 225, 0.9);
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+}
+
+#social li a::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    filter: blur(2px);
+}
+
+#social li a::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    filter: blur(2px);
+}
+
+#social li a svg {
+    transform: scale(0.6);
+    transition: 0.5s;
+}
+
+#social li:hover a svg {
+    transform: scale(0.6) rotate(360deg);
+}
+
+@media (max-width:1275px) {
+    #social {
+        position: relative;
+        flex-direction: row;
+        left: 0;
+    }
+
+    #social li a {
+        margin: 0px 10px;
+    }
+}

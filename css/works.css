@@ -1,0 +1,97 @@
+.container2 {
+    position: relative;
+    margin-top: 50px;
+}
+
+@media(max-width:1275px) {
+    .container2 {
+        margin-top: 0;
+    }
+}
+
+.docontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.container2 div h2 {
+    text-align: center;
+    color: orangered;
+    font-size: 32px;
+    text-decoration: underline;
+}
+
+.do1,
+.do2,
+.do3,
+.do4 {
+    max-width: 100%;
+    margin: 15px 0px;
+    background-color: #ffffff3f;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 1px solid rgba(225, 225, 225, 0.5);
+    border-left: 1px solid rgba(225, 225, 225, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media(min-width:550px) {
+
+    .do1,
+    .do2,
+    .do3,
+    .do4 {
+        max-width: 45%;
+    }
+
+    .docontainer {
+        padding: 20px 0px;
+    }
+
+}
+
+.do1:hover,
+.do2:hover,
+.do3:hover,
+.do4:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.docontainer .icon {
+    width: 80%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.do-desc {
+    padding: 20px;
+}
+
+.do-desc h3 {
+    color: orangered;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.do1 p,
+.do2 p,
+.do3 p,
+.do4 p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 0 10px;
+}
+
+@media (max-width: 375px) {
+    .icon {
+        margin: 0 0 10px 0;
+    }
+}
