@@ -2,7 +2,7 @@
     position: absolute;
     bottom: 30px;
     left: 50px;
-    color: rgb(255, 81, 0);
+    color: var(--Color);
 }
 
 @media (max-width:1275px) {

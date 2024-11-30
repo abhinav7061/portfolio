@@ -1,0 +1,80 @@
+#darkmode-toggle-input {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+#darkmode-toggle-label {
+    width: 60px;
+    height: 29px;
+    position: relative;
+    display: inline-flex;
+    background: #ebebeb;
+    border-radius: 20px;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.4), inset 0px 2px 5px rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    vertical-align: middle;
+    border: 1px solid var(--BorderColor);
+    border-top: 1px solid var(--BorderTopLeft);
+    border-left: 1px solid var(--BorderTopLeft);
+    transition: 0.3s;
+}
+
+#darkmode-toggle-label:after {
+    content: '🌞';
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    top: 2.4px;
+    left: 2.2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #ffcc89, #d8860b);
+    border-radius: 50%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+#darkmode-toggle-input:checked+#darkmode-toggle-label:after {
+    left: 33px;
+    content: '🌜';
+    background: linear-gradient(180deg, #8d8d8d, #5a5a5a);
+    color: white;
+}
+
+#darkmode-toggle-label:active:after {
+    width: 35px;
+}
+
+#darkmode-toggle-input:checked+#darkmode-toggle-label:active:after {
+    left: 21px;
+}
+
+@media(max-width:850px) {
+    #darkmode-toggle-label {
+        width: 45px;
+        height: 21px;
+    }
+
+    #darkmode-toggle-label:active:after {
+        width: 25px;
+    }
+
+    #darkmode-toggle-label:after {
+        width: 17px;
+        height: 17px;
+        font-size: 11px;
+        top: 1px;
+        left: 2px;
+    }
+
+    #darkmode-toggle-input:checked+#darkmode-toggle-label:after {
+        left: 24px;
+    }
+
+    #darkmode-toggle-input:checked+#darkmode-toggle-label:active:after {
+        left: 16px;
+    }
+}

@@ -1,10 +1,9 @@
-/* common css for header */
 .header-container {
     position: absolute;
     top: -40px;
     right: 20px;
     left: 20px;
-    background: rgba(225, 225, 225, 0.2);
+    background: var(--ForegroundColor);
     padding: 20px 50px;
     display: flex;
     justify-content: space-between;
@@ -12,9 +11,9 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
     border-radius: 20px;
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(225, 225, 225, 0.25);
-    border-top: 1px solid rgba(225, 225, 225, 0.5);
-    border-left: 1px solid rgba(225, 225, 225, 0.5);
+    border: 1px solid var(--BorderColor);
+    border-top: 1px solid var(--BorderTopLeft);
+    border-left: 1px solid var(--BorderTopLeft);
     z-index: 100;
 }
 
@@ -38,10 +37,10 @@
 }
 
 .logo {
-    color: rgb(255, 102, 0);
+    color: var(--Color);
     font-weight: 700;
     text-decoration: none;
-    font-size: 2em;
+    font-size: 1.6em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +53,7 @@
 }
 
 .tags {
-    color: black;
+    color: var(--textColor);
 }
 
 .mobile-nav {
@@ -67,29 +66,36 @@
 
 .primary-menu {
     list-style: none;
-    /* background: linear-gradient(0deg, rgba(33, 213, 245, 0.500) 0%, rgba(243, 110, 176, 0.500) 60%, rgba(243, 110, 176, 0.500) 100%); */
-    background: rgba(255, 96, 22, 0.726);
+    background: #ebebeb73;
+    border: 1px solid var(--BorderColor);
+    border-top: 1px solid var(--BorderTopLeft);
+    border-left: 1px solid var(--BorderTopLeft);
     padding: 15px 40px;
     border-bottom-left-radius: 20px;
     border-top-right-radius: 20px;
     transform: translateX(50px) translateY(-20px);
 }
 
+.dark-mode .primary-menu {
+    background: #2e2e2ed5;
+}
+
 .primary-menu li {
     display: inline-block;
+    vertical-align: middle;
 }
 
 .primary-menu li a {
     text-decoration: none;
     position: relative;
-    font-weight: bold;
-    color: #3ae1ffcc;
+    font-weight: 600;
+    color: var(--Color);
     padding: 8px 15px;
     text-transform: uppercase;
     border-radius: 25px;
     letter-spacing: 1px;
     transition: 0.5s;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 @media (max-width:950px) {
@@ -99,6 +105,10 @@
 
     .primary-menu li a {
         font-size: 14px;
+    }
+
+    .primary-menu {
+        padding: 15px 25px;
     }
 }
 
@@ -114,8 +124,8 @@
 
 .primary-menu li a:hover,
 .primary-menu li a.active {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    color: rgb(117, 234, 255);
+    box-shadow: 0 5px 10px var(--boxShadow);
+    color: var(--ActiveColor);
 }
 
 .mobile-nav {
@@ -124,28 +134,29 @@
     cursor: pointer;
     font-size: 24px;
     outline: none;
-    color: orangered;
+    color: var(--Color);
 }
 
-@media (max-width:700px) {
+@media (max-width:750px) {
     .site-nav-menu {
         float: none;
         position: absolute;
-        background: linear-gradient(0deg, rgba(33, 213, 245, 0.863) 0%, rgba(243, 210, 176, 0.863) 40%, rgba(243, 110, 176, 0.863) 100%);
-        backdrop-filter: blur(1px);
-        width: 100%;
-        left: 0;
-        top: 70px;
-        padding: 30px 0px 50px 0px;
-        border-top: 1px solid #4a4848;
+        background: transparent;
+        width: auto;
+        right: 25px;
+        top: 75px;
         clip-path: circle(0% at 100% 0%);
         transition: all .8s;
+        backdrop-filter: blur(5px);
+    }
+
+    .header-container {
+        padding: 10px 20px;
     }
 
     .primary-menu {
         transform: translateX(0px) translateY(0px);
-        border-radius: 0;
-        background: transparent;
+        border-radius: 10px;
     }
 
     .primary-menu li {
@@ -157,16 +168,17 @@
 
     .primary-menu li a {
         padding: 8px 15px;
-        color: rgb(255, 115, 50);
+        color: var(--Color)
     }
 
     .primary-menu li a:hover,
     .primary-menu li a.active {
-        color: rgb(255, 100, 29);
+        color: var(--ActiveColor);
     }
 
     .mobile-nav {
         display: block;
+        padding: 0;
     }
 
     .mobile-menu {

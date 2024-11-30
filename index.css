@@ -1,14 +1,63 @@
+:root {
+    --ActiveColor: #d8560a;
+    --Color: #fa6610;
+    --ForegroundColor: #e1e1e15b;
+    --BorderColor: #bdbdbdd0;
+    --BorderTopLeft: #ebebebd0;
+    --BtnColor: #ffffff;
+    --BtnTextColor: #fa6610;
+    --BtnHoveredColor: #dddddd;
+    --textColor: #000000;
+    --boxShadow: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode {
+    --ActiveColor: #FEBD5E;
+    --Color: #ffdb70;
+    --ForegroundColor: #1e1e1fd0;
+    --BorderColor: #6b6b6b80;
+    --BorderTop: #cccccc80;
+    --BorderTopLeft: #cccccc80;
+    --BtnColor: #bdbdbd;
+    --BtnHoveredColor: #919191;
+    --textColor: #ffffff;
+    --boxShadow: rgba(185, 185, 185, 0.2);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s;
 }
 
-body {
+.main {
+    height: 100%;
+    width: 100%;
     background: url(assets/introbackground.jpeg);
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    color: var(--textColor);
+}
+
+.dark-mode .main {
+    background: url(assets/image.png);
+}
+
+.dark-mode ::-moz-selection {
+    color: black;
+    background: var(--Color);
+}
+
+.dark-mode ::selection {
+    color: black;
+    background: var(--Color);
+}
+
+body.dark-mode {
+    background-color: black;
+    color: white;
 }
 
 section {
@@ -24,7 +73,7 @@ section {
 }
 
 .abhinavintrotext {
-    color: rgba(243, 110, 176, 1);
+    color: var(--Color);
 }
 
 @media (max-width:1275px) {
@@ -39,11 +88,14 @@ section {
     width: calc(100% - 100px);
     min-height: calc(100vh - 280px);
     min-height: 300px;
-    background: rgba(225, 225, 225, 0.5);
+    background: var(--ForegroundColor);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
     border-radius: 20px;
     align-items: center;
     display: flex;
+    border: 1px solid var(--BorderColor);
+    border-top: 1px solid var(--BorderTopLeft);
+    border-left: 1px solid var(--BorderTopLeft);
     justify-content: center;
     align-items: center;
     padding: 50px;
@@ -53,7 +105,6 @@ section {
 #tab-content {
     width: 100%;
     height: 100%;
-    /* border: 2px solid green; */
     align-items: center;
     display: flex;
     border-radius: 20px;
@@ -105,34 +156,37 @@ section {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    border: 1px solid #e1e1e140;
-    border-top: 1px solid rgba(225, 225, 225, 0.5);
-    border-left: 1px solid rgba(225, 225, 225, 0.5);
+    border: 1px solid var(--BorderColor);
+    border-top: 1px solid var(--BorderTopLeft);
+    border-left: 1px solid var(--BorderTopLeft);
     padding: 40px;
+    background-color: var(--ForegroundColor);
 }
 
 .content h2 {
     font-size: 1.9em;
     margin-bottom: 20px;
-    color: rgb(255, 81, 0);
 }
 
 .content p {
     font-size: 1em;
-    color: rgb(255, 81, 0);
 }
 
 .content a {
     display: inline-block;
     padding: 15px 30px;
-    background: white;
-    color: rgb(255, 81, 0);
+    background: var(--BtnColor);
+    color: var(--BtnTextColor);
     margin-top: 20px;
     border-radius: 30px;
     font-size: 1.2em;
     font-weight: bold;
     text-decoration: none;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content a:hover {
+    background: var(--BtnHoveredColor);
 }
 
 @media(max-width:500px) {

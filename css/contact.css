@@ -6,7 +6,10 @@
     display: block;
     font-weight: bolder;
     margin-bottom: 5px;
-    color: #000000;
+}
+
+#contact-heading {
+    color: var(--Color);
 }
 
 .form-group input,
@@ -20,17 +23,16 @@
 }
 
 button {
-    background: rgb(255, 255, 255);
+    background: var(--BtnColor);
     font-weight: bold;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    color: rgb(255, 95, 21);
+    color: var(--BtnTextColor);
     font-size: 16px;
-    transition: background 0.3s;
 }
 
 button:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--BtnHoveredColor);
 }
