@@ -108,21 +108,27 @@ section {
     height: 100%;
     align-items: center;
     display: flex;
-    border-radius: 20px;
     justify-content: center;
     align-items: center;
     z-index: 2;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 @media(max-width:1275px) {
     #tab-content {
-        gap: 20px;
+        margin-top: 20px;
+        gap: 50px;
     }
 }
 
-@media(max-width:700px) {
+@media(max-width:750px) {
     #tab-content {
-        flex-direction: column;
+        flex-direction: column-reverse;
+    }
+
+    #tab-content {
+        gap: 60px;
     }
 }
 
@@ -243,49 +249,30 @@ section {
     }
 }
 
-/* css for image animated at the right side */
-.imgbx img {
-    max-width: 325px;
-    animation: animate 5s linear infinite;
+/* css for image transform at the right side */
+#profile_img {
+    width: 400px;
+    min-width: 300px;
 }
 
-@keyframes animate {
-
-    0%,
-    100% {
-        transform: translateY(-25px);
-    }
-
-    50% {
-        transform: translateY(100px);
-    }
+.profile_blob {
+    fill: var(--Color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@media (max-width:1275px) {
-    .imgbx {
-        margin-bottom: 50px;
-    }
-
-    .imgbx img {
-        max-width: 275px;
-    }
-
-    @keyframes animate {
-
-        0%,
-        100% {
-            transform: translateY(-20px);
-        }
-
-        50% {
-            transform: translateY(40px);
-        }
-
-    }
+.profile_blob-img {
+    transform: scale(0.4);
 }
 
-@media (min-width:1400px) {
-    .imgbx img {
-        position: relative;
+#profile_img:hover .profile_blob-img {
+    transform: scale(0.5) translateX(-60px);
+}
+
+@media(max-width:600px) {
+    #profile_img {
+        width: 80%;
+        max-width: 200px;
     }
 }

@@ -7,10 +7,6 @@ Welcome to the personal portfolio of Abhinav Kumar Soni. This project showcases 
 - [About](#about)
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Scripts](#scripts)
-- [Technologies Used](#technologies-used)
-- [Contact](#contact)
 
 ## About
 
@@ -39,4 +35,4 @@ Ensure you have the following installed on your machine:
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/yourusername/portfolio.git
+   git clone https://github.com/abhinav7061/portfolio.git
