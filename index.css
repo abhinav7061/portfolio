@@ -1,14 +1,26 @@
 :root {
-    --ActiveColor: #d8560a;
-    --Color: #fa6610;
+    --ActiveColor: #0d5dc5;
+    --Color: #1075fa;
     --ForegroundColor: #e1e1e15b;
     --BorderColor: #bdbdbdd0;
     --BorderTopLeft: #ebebebd0;
     --BtnColor: #ffffff;
-    --BtnTextColor: #fa6610;
     --BtnHoveredColor: #dddddd;
     --textColor: #000000;
     --boxShadow: rgba(0, 0, 0, 0.2);
+    --btnShadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    --btnBackground: linear-gradient(to bottom right, hsla(0, 0%, 97%, 0.789) 3%, hsla(0, 0%, 97%, 0.304) 97%);
+    --btnForeground: linear-gradient(to bottom right, rgba(48, 48, 48, 0.1) 0%, hsla(0, 0%, 91%, 0) 100%), hsla(240, 2%, 88%, 0.171);
+}
+
+.orange-mode {
+    --ActiveColor: #d8560a;
+    --Color: #fa6610;
+}
+
+.purple-mode {
+    --ActiveColor: #8d008d;
+    --Color: #b900b9;
 }
 
 .dark-mode {
@@ -22,6 +34,9 @@
     --BtnHoveredColor: #919191;
     --textColor: #ffffff;
     --boxShadow: rgba(185, 185, 185, 0.2);
+    --btnShadow: 0 16px 40px hsla(0, 0%, 0%, 0.25);
+    --btnBackground: linear-gradient(to bottom right, hsla(240, 1%, 25%, 0.589) 3%, hsla(0, 0%, 19%, 0.404) 97%);
+    --btnForeground: linear-gradient(to bottom right, hsla(240, 1%, 18%, 0.251) 0%, hsla(240, 2%, 11%, 0) 100%), hsla(240, 3%, 13%, 0.719);
 }
 
 * {
@@ -34,7 +49,25 @@
 .main {
     height: 100%;
     width: 100%;
-    background: url(assets/introbackground.jpeg);
+    background: url(assets/blueBg.png);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    color: var(--textColor);
+}
+
+.purple-mode .main {
+    background: url(assets/purpleBg.png);
+    /* https://img.freepik.com/free-vector/background-bokeh-effect-gradient_23-2148377116.jpg */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    color: var(--textColor);
+}
+
+.orange-mode .main {
+    background: url(assets/orangeBg.png);
+    /* https://img.freepik.com/premium-photo/blurred-lights-yellow-background-lights-yellow-background_3248-3008.jpg */
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
@@ -42,7 +75,11 @@
 }
 
 .dark-mode .main {
-    background: url(assets/image.png);
+    background: url(https://img.freepik.com/premium-vector/white-gray-smooth-gradient-background-wallpaper-vector-image-backdrop-presentation_1110513-7463.jpg?ga=GA1.1.613874101.1733114189);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    color: var(--textColor);
 }
 
 ::-moz-selection {
@@ -53,6 +90,10 @@
 ::selection {
     color: black;
     background: var(--Color);
+}
+
+.user-select-none {
+    user-select: none;
 }
 
 body.dark-mode {
@@ -87,6 +128,7 @@ section {
     position: relative;
     margin-top: 40px;
     width: calc(100% - 100px);
+    max-width: 1600px;
     min-height: calc(100vh - 280px);
     min-height: 300px;
     background: var(--ForegroundColor);
@@ -182,18 +224,12 @@ section {
 .content a {
     display: inline-block;
     padding: 15px 30px;
-    background: var(--BtnColor);
-    color: var(--BtnTextColor);
     margin-top: 20px;
     border-radius: 30px;
     font-size: 1.2em;
     font-weight: bold;
     text-decoration: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.content a:hover {
-    background: var(--BtnHoveredColor);
+    text-align: center;
 }
 
 @media(max-width:500px) {
@@ -275,4 +311,78 @@ section {
         width: 80%;
         max-width: 200px;
     }
+}
+
+/* style for button */
+.btn {
+    position: relative;
+    background: var(--btnBackground);
+    font-weight: bold;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--Color);
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+    width: 100%;
+    box-shadow: var(--btnShadow);
+    transition: 0.25s ease;
+}
+
+@media (min-width: 768px) {
+    .btn {
+        width: max-content;
+        margin-left: auto;
+    }
+}
+
+.btn:hover {
+    background: linear-gradient(to bottom right, var(--Color) 0%, hsla(36, 100%, 69%, 0) 65%);
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: var(--btnForeground);
+    border-radius: inherit;
+    z-index: -1;
+    transition: 0.25s ease;
+}
+
+/* css for toast */
+.toast {
+    position: fixed;
+    top: 30px;
+    right: 50%;
+    transform: translateX(50%);
+    max-width: content;
+    padding: 20px 30px;
+    z-index: 1000;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    backdrop-filter: blur(20px);
+}
+
+@media(max-width:667px) {
+    .toast {
+        width: 80%;
+    }
+}
+
+.error-toast {
+    border: 1px solid red;
+    background: rgba(255, 2, 2, 0.2);
+}
+
+.success-toast {
+    border: 1px solid green;
+    background: rgba(2, 255, 2, 0.2);
 }

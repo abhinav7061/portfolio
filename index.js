@@ -4,10 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabLinks = document.querySelectorAll('.tab-link');
     const tabContent = document.getElementById('tab-content');
     const darkModeToggleBtn = document.getElementById('darkmode-toggle-input');
+    const darkModeToggleLabel = document.getElementById('darkmode-toggle-label');
+    const blueRadio = document.getElementById('blue-radio');
+    const purpleRadio = document.getElementById('purple-radio');
+    const orangeRadio = document.getElementById('orange-radio');
+
+    blueRadio.addEventListener('change', () => {
+        document.body.classList.remove('purple-mode', 'orange-mode');
+    });
+
+    purpleRadio.addEventListener('change', () => {
+        document.body.classList.remove('orange-mode');
+        document.body.classList.add('purple-mode');
+    });
+
+    orangeRadio.addEventListener('change', () => {
+        document.body.classList.remove('purple-mode');
+        document.body.classList.add('orange-mode');
+    });
 
     // Function to toggle dark mode
     function toggleDarkMode() {
         const isChecked = darkModeToggleBtn.checked;
+        darkModeToggleLabel.setAttribute('title', `Toggle ${isChecked ? 'Light' : 'Dark'} Mode`);
         document.body.classList.toggle('dark-mode', isChecked);
         document.body.classList.toggle('light-mode', !isChecked);
         localStorage.setItem('theme', isChecked ? 'dark' : 'light');
@@ -89,11 +108,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Function to show toast message
+    function showToast(message, type) {
+        console.log(message);
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}-toast`;
+        toast.innerText = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.classList.add('visible');
+        }, 100);
+
+        setTimeout(() => {
+            toast.classList.remove('visible');
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 3000);
+    }
+
     // Function to send email
     function sendEmail() {
-        const title = document.getElementById('title').value;
-        const description = document.getElementById('description').value;
+        const title = document.getElementById('contact_subject').value.trim();
+        const description = document.getElementById('contact_msg').value.trim();
         const cc = 'abhinavkumar93043@gmail.com';
+
+        if (!title || !description) {
+            showToast('Title and description cannot be empty.', 'error');
+            return;
+        }
+
         const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=&cc=${cc}&su=${encodeURIComponent(title)}&body=${encodeURIComponent(description)}`;
         window.open(mailtoLink, '_blank');
     }
@@ -161,16 +206,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function addInputEventListeners(element) {
+        element.addEventListener('focus', handleFocus);
+        element.addEventListener('blur', handleBlur);
+        element.addEventListener('input', handleInput);
+    }
+
     function contactFormEvent() {
         const inputField = document.getElementById('contact_subject');
         const textareaField = document.getElementById('contact_msg');
-        inputField.addEventListener('focus', handleFocus);
-        inputField.addEventListener('blur', handleBlur);
-        inputField.addEventListener('input', handleInput);
-
-        textareaField.addEventListener('focus', handleFocus);
-        textareaField.addEventListener('blur', handleBlur);
-        textareaField.addEventListener('input', handleInput);
+        [inputField, textareaField].forEach(addInputEventListeners);
     }
 
     // Function to determine the callback based on the tab
@@ -229,15 +274,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize theme based on localStorage
     const theme = localStorage.getItem('theme');
-    if (theme === 'light') {
-        document.body.classList.add('light-mode');
-        document.body.classList.remove('dark-mode');
-        darkModeToggleBtn.checked = false;
-    } else {
-        document.body.classList.add('dark-mode');
-        document.body.classList.remove('light-mode');
-        darkModeToggleBtn.checked = true;
-    }
+    document.body.classList.add(`${theme}-mode`);
+    document.body.classList.remove(`${theme === 'dark' ? 'light' : 'dark'}-mode`);
+    darkModeToggleBtn.checked = (theme === 'dark');
+    darkModeToggleLabel.setAttribute('title', `Toggle ${theme === 'dark' ? 'Light' : 'Dark'} Mode`);
 
     // Initialize page with correct tab
     const initialTab = getTabFromURL();

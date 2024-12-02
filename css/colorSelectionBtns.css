@@ -1,0 +1,46 @@
+.color-selection {
+    margin-left: 10px;
+}
+
+@media(max-width750) {
+    .color-selection {
+        margin-left: 0;
+    }
+}
+
+.dark-mode .color-selection {
+    display: none;
+}
+
+.color-selection input {
+    display: none;
+}
+
+.color-selection label {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+@media(min-width:1000px) {
+    .color-selection label {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+#blue-radio-label {
+    background-color: #1075fa;
+}
+
+#purple-radio-label {
+    background-color: #b900b9;
+}
+
+#orange-radio-label {
+    background-color: #fa6610;
+}

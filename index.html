@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/social.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/darkBtn.css">
+    <link rel="stylesheet" href="css/colorSelectionBtns.css">
     <link rel="shortcut icon" href="assets/profile.png" type="image/x-icon">
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -34,7 +35,17 @@
                         <li><a href="#" class="tab-link" data-tab="about">About</a></li>
                         <li><a href="#" class="tab-link" data-tab="works">Works</a></li>
                         <li><a href="#" class="tab-link" data-tab="contact">Contact</a></li>
-                        <li>
+                        <li class="user-select-none">
+                            <span class="color-selection">
+                                <label for="blue-radio" id="blue-radio-label" title="select blue theme"></label>
+                                <input type="radio" id="blue-radio" name="theme" value="blue">
+
+                                <label for="purple-radio" id="purple-radio-label" title="select purple theme"></label>
+                                <input type="radio" id="purple-radio" name="theme" value="purple">
+
+                                <label for="orange-radio" id="orange-radio-label" title="select orange theme"></label>
+                                <input type="radio" id="orange-radio" name="theme" value="orange">
+                            </span>
                             <input type="checkbox" id="darkmode-toggle-input">
                             <label for="darkmode-toggle-input" id="darkmode-toggle-label"></label>
                         </li>

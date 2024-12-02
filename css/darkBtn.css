@@ -1,7 +1,5 @@
 #darkmode-toggle-input {
-    width: 0;
-    height: 0;
-    visibility: hidden;
+    display: none;
 }
 
 #darkmode-toggle-label {
@@ -52,7 +50,7 @@
     left: 21px;
 }
 
-@media(max-width:850px) {
+@media(max-width:1000px) {
     #darkmode-toggle-label {
         width: 45px;
         height: 21px;
