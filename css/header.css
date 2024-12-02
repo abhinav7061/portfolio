@@ -70,7 +70,7 @@
 
 .primary-menu {
     list-style: none;
-    background: #ebebeb73;
+    background: #ebebebf8;
     border: 1px solid var(--BorderColor);
     border-top: 1px solid var(--BorderTopLeft);
     border-left: 1px solid var(--BorderTopLeft);
@@ -81,7 +81,7 @@
 }
 
 .dark-mode .primary-menu {
-    background: #2e2e2ed5;
+    background: #2e2e2e;
 }
 
 .primary-menu li {
@@ -136,13 +136,11 @@
     .site-nav-menu {
         float: none;
         position: absolute;
-        background: transparent;
         width: auto;
         right: 25px;
         top: 75px;
         clip-path: circle(0% at 100% 0%);
         transition: all .8s;
-        backdrop-filter: blur(20px);
     }
 
     .primary-menu {
