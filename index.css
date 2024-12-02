@@ -45,12 +45,12 @@
     background: url(assets/image.png);
 }
 
-.dark-mode ::-moz-selection {
+::-moz-selection {
     color: black;
     background: var(--Color);
 }
 
-.dark-mode ::selection {
+::selection {
     color: black;
     background: var(--Color);
 }

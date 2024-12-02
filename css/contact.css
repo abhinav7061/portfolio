@@ -5,7 +5,7 @@
 .form-group label {
     display: block;
     font-weight: bolder;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 
 #contact-heading {
@@ -15,14 +15,32 @@
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.8);
-    color: #333;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: transparent;
+    color: var(--textColor);
+    outline: none;
+    border: 1px solid var(--Color);
+    transition: border-color 0.3s ease;
+    resize: vertical;
 }
 
-button {
+.form-group input.focused-empty,
+.form-group textarea.focused-empty {
+    border-width: 2px;
+    border-color: red;
+}
+
+.form-group input.focused-filled,
+.form-group textarea.focused-filled {
+    border-width: 2px;
+    border-color: green;
+}
+
+
+#contactForm button {
     background: var(--BtnColor);
     font-weight: bold;
     border: none;
@@ -30,9 +48,9 @@ button {
     border-radius: 5px;
     cursor: pointer;
     color: var(--BtnTextColor);
-    font-size: 16px;
+    font-size: 17px;
 }
 
-button:hover {
+#contactForm button:hover {
     background: var(--BtnHoveredColor);
 }

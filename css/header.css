@@ -147,7 +147,7 @@
         top: 75px;
         clip-path: circle(0% at 100% 0%);
         transition: all .8s;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(20px);
     }
 
     .header-container {

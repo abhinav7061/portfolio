@@ -98,6 +98,106 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(mailtoLink, '_blank');
     }
 
+    function getProfileSVG() {
+        return `
+            <!--svg for profile-->
+            <svg viewBox="0 0 200 187" class="profile_blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill='currentColor'>
+                <mask id="mask0" mask-type="alpha">
+                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
+                    130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
+                    97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
+                    0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
+                </mask>
+                <g mask="url(#mask0)">
+                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
+                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
+                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
+                    -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
+                    <image class="profile_blob-img" x="0" y="0" href="assets/profile.png" />
+                </g>
+            </svg>
+        `;
+    }
+
+    function addProfileImage() {
+        const profileImgDiv = document.createElement('div');
+        profileImgDiv.id = 'profile_img';
+        profileImgDiv.innerHTML = getProfileSVG();
+        tabContent.appendChild(profileImgDiv);
+    }
+
+    function handleFocus(event) {
+        const element = event.target;
+        if (element.value.trim() === '') {
+            element.classList.add('focused-empty');
+            element.classList.remove('focused-filled');
+        } else {
+            element.classList.add('focused-filled');
+            element.classList.remove('focused-empty');
+        }
+    }
+
+    function handleBlur(event) {
+        const element = event.target;
+        element.classList.remove('focused-empty', 'focused-filled');
+    }
+
+    function handleInput(event) {
+        const element = event.target;
+        if (element.value.trim() === '') {
+            if (element === document.activeElement) {
+                element.classList.add('focused-empty');
+                element.classList.remove('focused-filled');
+            } else {
+                element.classList.remove('focused-empty', 'focused-filled');
+            }
+        } else {
+            if (element === document.activeElement) {
+                element.classList.add('focused-filled');
+                element.classList.remove('focused-empty');
+            } else {
+                element.classList.remove('focused-empty', 'focused-filled');
+            }
+        }
+    }
+
+    function contactFormEvent() {
+        const inputField = document.getElementById('contact_subject');
+        const textareaField = document.getElementById('contact_msg');
+        inputField.addEventListener('focus', handleFocus);
+        inputField.addEventListener('blur', handleBlur);
+        inputField.addEventListener('input', handleInput);
+
+        textareaField.addEventListener('focus', handleFocus);
+        textareaField.addEventListener('blur', handleBlur);
+        textareaField.addEventListener('input', handleInput);
+    }
+
+    // Function to determine the callback based on the tab
+    function determineCallback(tab) {
+        switch (tab) {
+            case 'intro':
+                return () => {
+                    initializeTyped();
+                    handleReadMoreBtn();
+                    addProfileImage();
+                };
+            case 'about':
+                return () => {
+                    initializeTyped();
+                    addProfileImage();
+                };
+            case 'contact':
+                return () => {
+                    formSubmission();
+                    addProfileImage();
+                    contactFormEvent();
+                };
+            default:
+                return null;
+        }
+    }
+
     // Event listeners
     darkModeToggleBtn.addEventListener('click', toggleDarkMode);
     mobile_nav_toggle.addEventListener('click', toggleShowNav);
@@ -112,22 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', event => {
             event.preventDefault();
             const tab = event.target.getAttribute('data-tab');
-            switch (tab) {
-                case 'intro':
-                    loadTabContent(tab, () => {
-                        initializeTyped();
-                        handleReadMoreBtn();
-                    });
-                    break;
-                case 'about':
-                    loadTabContent(tab, initializeTyped);
-                    break;
-                case 'contact':
-                    loadTabContent(tab, formSubmission);
-                    break;
-                default:
-                    loadTabContent(tab);
-            }
+            const callback = determineCallback(tab);
+            loadTabContent(tab, callback);
             updateURL(tab);
             setActiveTab(tab);
             closeMobileMenu();
@@ -136,7 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('popstate', () => {
         const tab = getTabFromURL();
-        loadTabContent(tab, initializeTyped);
+        const callback = determineCallback(tab);
+        loadTabContent(tab, callback);
         setActiveTab(tab);
     });
 
@@ -154,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize page with correct tab
     const initialTab = getTabFromURL();
-    loadTabContent(initialTab, initializeTyped);
+    const initialCallback = determineCallback(initialTab);
+    loadTabContent(initialTab, initialCallback);
     setActiveTab(initialTab);
 });
